@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("./Assets/img1.jpeg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            justify-content: space-between;
+    
+        }
+        #bank:hover {
+           font-size: 20px;
+        }
+        #shopping:hover {
+           font-size: 20px;
+        }
+        #api-calling:hover {
+           font-size: 20px;
+        }
+        .section {
+            background-color: #fff;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 20px;
+            width: 20%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ccc;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color:#0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section" id="bank">
+            <h2>Bank</h2>
+            <form id="bank-form">
+                <input type="text" placeholder="Username" required><br>
+                <input type="password" placeholder="Password" required><br>
+             <button type="submit"><a href="transactions.html">Login</a></button>
+            </form>
+        </div>
+        <div class="section" id="shopping">
+            <h2>Shopping</h2>
+            <form id="shopping-form">
+                <input type="text" placeholder="Username" required><br>
+                <input type="password" placeholder="Password" required><br>
+                <button type="submit"><a href="shopping.html">Login</a></button>
+            </form>
+        </div>
+        <div class="section" id="api-calling">
+            <h2>API Calling</h2>
+            <form id="api-form">
+                <input type="text" placeholder="Username" required><br>
+                <input type="password" placeholder="Password" required><br>
+                <button type="submit"><a href="API.html">Login</a></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('bank-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Bank login form submitted!');
+        });
+
+        document.getElementById('shopping-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Shopping login form submitted!');
+        });
+
+        document.getElementById('api-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('API Calling form submitted!');
+        });
+    </script>
+</body>
+</html>

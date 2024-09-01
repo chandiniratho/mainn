@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+            margin:10%;
+           
+            background-image: url("./Assets/img1.jpeg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+        }
+        .container {
+            max-width: 1000px;
+           background-color: white;
+           border:2px solid black;
+            
+        }
+        .form-section {
+            margin-bottom: 30px;
+        
+        }
+        .history-table td, .history-table th {
+            text-align: center;
+        }
+    h1{
+        font-size: 30px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Banking Application</h1>
+
+        <!-- User Details Section -->
+        <div class="form-section" id="user-details-section">
+            <h2>User Details</h2>
+            <form id="userDetailsForm">
+                <div class="form-group">
+                    <label for="userName">Name</label>
+                    <input type="text" class="form-control" id="userName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="userAccountNumber">Account Number</label>
+                    <input type="text" class="form-control" id="userAccountNumber" placeholder="Enter your account number">
+                </div>
+                <div class="form-group">
+                    <label for="userIfscCode">IFSC Code</label>
+                    <input type="text" class="form-control" id="userIfscCode" placeholder="Enter your IFSC code">
+                </div>
+                <a href="credit.html"><button type="button" class="btn btn-primary">Login</button></a>
+                <a href="main.html"><button type="button" class="btn btn-primary">Main Page</button></a>
+            </form>
+        </div>
+    
+
+    <script>
+        let userDetails = {
+            name: '',
+            accountNumber: '',
+            ifscCode: '',
+            balance: 0,
+            history: []
+        };
+
+        function updateUserDetails() {
+            userDetails.name = document.getElementById('userName').value;
+            userDetails.accountNumber = document.getElementById('userAccountNumber').value;
+            userDetails.ifscCode = document.getElementById('userIfscCode').value;
+            alert('User details updated successfully.');
+        }
+
+        function updateIfscCode() {
+            userDetails.ifscCode = document.getElementById('ifscCode').value;
+            alert('IFSC code updated successfully.');
+        }
+
+        function makeTransaction() {
+            const transactionType = document.getElementById('transactionType').value;
+            const transactionAmount = parseFloat(document.getElementById('transactionAmount').value);
+
+            if (isNaN(transactionAmount) || transactionAmount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+
+            if (transactionType === 'debit' && transactionAmount > userDetails.balance) {
+                alert('Insufficient balance.');
+                return;
+            }
+
+            const now = new Date();
+            const transaction = {
+                date: now.toLocaleDateString(),
+                type: transactionType,
+                amount: transactionAmount
+            };
+
+            if (transactionType === 'credit') {
+                userDetails.balance += transactionAmount;
+            } else {
+                userDetails.balance -= transactionAmount;
+            }
+
+            transaction.balance = userDetails.balance;
+            userDetails.history.push(transaction);
+            updateHistoryTable();
+        }
+
+        function updateHistoryTable() {
+            const tableBody = document.getElementById('historyTableBody');
+            tableBody.innerHTML = '';
+
+            userDetails.history.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.date}</td>
+                    <td>${transaction.type}</td>
+                    <td>${transaction.amount.toFixed(2)}</td>
+                    <td>${transaction.balance.toFixed(2)}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>

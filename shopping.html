@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Store</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        /* Navigation */
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        /* Sections */
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        /* Product Card */
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .product-info p {
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 14px;
+        }
+        .product-price {
+            font-size: 20px;
+            color: #e67e22;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .add-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e67e22;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background-color: #cf6d17;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .product-info h3 {
+                font-size: 16px;
+            }
+            .product-info p {
+                font-size: 12px;
+            }
+            .product-price {
+                font-size: 18px;
+            }
+            .add-to-cart {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>FLORA & KHLOE</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#men" onclick="showSection('men')">Men</a>
+        <a href="#women" onclick="showSection('women')">Women</a>
+        <a href="#kids" onclick="showSection('kids')">Kids</a>
+        <a href="main.html" onclick="showSection('Mainpage')">Go Back</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Men's Section -->
+        <div id="men" class="section active">
+            <h2 style="text-align:center; margin-bottom:30px;">Men's Collection</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="./Assets/img3.jpeg" alt="Men Product 1" class="product-image">
+                    <div class="product-info">
+                        <h3>Casual Shirt</h3>
+                        <p>Comfortable and stylish casual shirt perfect for everyday wear.</p>
+                        <div class="product-price">$29.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="./Assets/img5.jpeg" alt="Men Product 2" class="product-image">
+                    <div class="product-info">
+                        <h3>Denim Jeans</h3>
+                        <p>Classic blue denim jeans with a modern fit.</p>
+                        <div class="product-price">$49.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="./Assets/img4.jpeg" alt="Men Product 3" class="product-image">
+                    <div class="product-info">
+                        <h3>Leather Jacket</h3>
+                        <p>Premium quality leather jacket for a rugged look.</p>
+                        <div class="product-price">$129.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="./Assets/img2.jpeg" alt="Men Product 4" class="product-image">
+                    <div class="product-info">
+                        <h3>Sports Watch</h3>
+                        <p>Durable and stylish watch suitable for all occasions.</p>
+                        <div class="product-price">$79.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Women's Section -->
+        <div id="women" class="section">
+            <h2 style="text-align:center; margin-bottom:30px;">Women's Collection</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="./Assets/img6.jpeg" alt="Women Product 1" class="product-image">
+                    <div class="product-info">
+                        <h3>Summer Dress</h3>
+                        <p>Elegant and lightweight dress perfect for summer days.</p>
+                        <div class="product-price">$39.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="./Assets/img7.jpeg" alt="Women Product 2" class="product-image">
+                    <div class="product-info">
+                        <h3>Handbag</h3>
+                        <p>Stylish handbag crafted from premium materials.</p>
+                        <div class="product-price">$59.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="./Assets/img8.jpeg" alt="Women Product 3" class="product-image">
+                    <div class="product-info">
+                        <h3>High Heels</h3>
+                        <p>Chic and comfortable high heels for special occasions.</p>
+                        <div class="product-price">$69.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="./Assets/img9.jpeg" alt="Women Product 4" class="product-image">
+                    <div class="product-info">
+                        <h3>Silk Scarf</h3>
+                        <p>Luxurious silk scarf to elevate your style.</p>
+                        <div class="product-price">$24.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kids' Section -->
+        <div id="kids" class="section">
+            <h2 style="text-align:center; margin-bottom:30px;">Kids' Collection</h2>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="./Assets/img10.jpeg" alt="Kids Product 1" class="product-image">
+                    <div class="product-info">
+                        <h3>T-Shirt</h3>
+                        <p>Cute and comfy t-shirt for everyday play.</p>
+                        <div class="product-price">$14.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="./Assets/img11.jpeg" alt="Kids Product 2" class="product-image">
+                    <div class="product-info">
+                        <h3>Jeans</h3>
+                        <p>Durable jeans suitable for all adventures.</p>
+                        <div class="product-price">$19.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="./Assets/img12.jpeg" alt="Kids Product 3" class="product-image">
+                    <div class="product-info">
+                        <h3>Sneakers</h3>
+                        <p>Comfortable sneakers for active kids.</p>
+                        <div class="product-price">$29.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="./Assets/img13.jpeg" alt="Kids Product 4" class="product-image">
+                    <div class="product-info">
+                        <h3>Backpack</h3>
+                        <p>Colorful backpack for school and outings.</p>
+                        <div class="product-price">$24.99</div>
+                        <div class="add-to-cart">Add to Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 E-commerce Store. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Add to Cart functionality (basic example)
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Product has been added to your cart!');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10%;
+            padding: 20px;
+            background-image: url("./Assets/img1.jpeg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+            
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border:2px solid black;
+           
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction History</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="historyTableBody">
+                <!-- Transaction history will be inserted here -->
+            </tbody>
+        </table>
+        <a href="transactions.html" class="back-link">Back to Main Page</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            const tbody = document.getElementById('historyTableBody');
+
+            if (history.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 3;
+                cell.textContent = 'No transaction history available.';
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            } else {
+                history.forEach(transaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${transaction.date}</td>
+                        <td>${transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</td>
+                        <td>$${transaction.amount.toFixed(2)}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

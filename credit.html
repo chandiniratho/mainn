@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit/Debit System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10%;
+            padding: 20px;
+            background-color: white;
+            background-image: url("./Assets/img1.jpeg");
+            background-repeat: no-repeat, repeat;
+            background-size: cover;
+           
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border:2px solid black;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .balance {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .history-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .history-link:hover {
+            text-decoration: underline;
+       
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit/Debit System</h1>
+        <form id="transactionForm">
+            <div class="form-group">
+                <label for="transactionType">Transaction Type:</label>
+                <select id="transactionType" required>
+                    <option value="" disabled selected>Select type</option>
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter amount" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="balance">
+            Balance: $<span id="balance">0.00</span>
+        </div>
+        <a href="history.html" class="history-link">View Transaction History</a>
+    
+    </div>
+
+    <script>
+        let balance = parseFloat(localStorage.getItem('balance')) || 0;
+        let history = JSON.parse(localStorage.getItem('history')) || [];
+
+        function updateHistory(type, amount) {
+            history.push({ type, amount, date: new Date().toLocaleString() });
+            localStorage.setItem('history', JSON.stringify(history));
+        }
+
+        function updateBalance() {
+            document.getElementById('balance').textContent = balance.toFixed(2);
+            localStorage.setItem('balance', balance);
+        }
+
+        document.getElementById('transactionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const transactionType = document.getElementById('transactionType').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            if (transactionType && !isNaN(amount)) {
+                if (transactionType === 'credit') {
+                    balance += amount;
+                } else if (transactionType === 'debit') {
+                    balance -= amount;
+                }
+
+                updateHistory(transactionType, amount);
+                updateBalance();
+                document.getElementById('transactionForm').reset();
+            } else {
+                alert('Please select a transaction type and enter a valid amount.');
+            }
+        });
+
+        updateBalance();
+    </script>
+</body>
+</html>
